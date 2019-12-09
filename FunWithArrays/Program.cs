@@ -1,33 +1,43 @@
 ﻿using System;
 
 namespace FunWithArrays
-{
+{    
+    // A custom enumeration.
+    enum EmpType:byte
+    {
+        Manager = 10,
+        Grunt = 1,
+        Contractor = 100,
+        VicePresident = 9
+    }
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("***** Fun with Arrays *****");
-            SimpleArrays();
+            Console.WriteLine("***** Fun with Arrays *****"); 
+            EmpType emp = EmpType.Contractor;
+            AskForBonus(emp);
+            Console.WriteLine("EmpType uses a {0} for storage", Enum.GetUnderlyingType(emp.GetType()));
             Console.ReadLine();
         }
-
-        static void SimpleArrays()
+    
+        static void AskForBonus(EmpType e)
         {
-            Console.WriteLine("=> Simple Array Creation.");
-            //Create an array of ints containing 3 elements indexed 0, 1, 2
-            int[] myInts = new int[3];
-            myInts[0] = 100;
-            myInts[1] = 200;
-            myInts[2] = 300;
-
-            //Now print each value.
-            foreach(int i in myInts)
-                Console.WriteLine(i);
-            Console.WriteLine();
-
-            //Create a 100 item string array, indexed 0 - 99
-            string[] booksOnDotNet = new string[100];
-            Console.WriteLine();
+            switch (e)
+            {
+                case EmpType.Manager:
+                    Console.WriteLine("How about stock options instead?");
+                    break;
+                case EmpType.Grunt:
+                    Console.WriteLine("You have gor to be kidding...");
+                    break;
+                case EmpType.Contractor:
+                    Console.WriteLine("You already get enough cash...");
+                    break;
+                case EmpType.VicePresident:
+                    Console.WriteLine("VERY GOOD, Sir!");
+                    break;
+            }
         }
     }
 }
